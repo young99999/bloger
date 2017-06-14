@@ -1,4 +1,5 @@
 {% load staticfiles %}
+{% load blog_tags %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,38 +82,40 @@
 				<div class="widget widget-recent-posts">
 					<h3 class="widget-title">Lastest Articles</h3>
 					<ul>
+						{% for post in recent_post_list %}
 						<li>
-							<a href="#">University of California, Los Angeles</a>
+							<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
 						</li>
-						<li>
-							<a href="#">University of California, Berkeley</a>
-						</li>
+						{% empty %}
+						No articles currently!
+						{% endfor %}
 					</ul>
 				</div>
 				<div class="widget widget-archives">
 					<h3 class="widget-title">Archival</h3>
+					{% archives as date_list %}
 					<ul>
+						{% for date in date_list %}
 						<li>
-							<a href="#">May 2017</a>
+							<a href="#">{{ date.month }} / {{ date.year }} </a>
 						</li>
-						<li>
-							<a href="#">April 2017</a>
-						</li>
-						<li>
-							<a href="#">March 2017</a>
-						</li>
+						{% empty %}
+						No archivals currently!
+						{% endfor %}
 					</ul>
 				</div>
 
 				<div class="widget widget-category">
 					<h3 class="widget-title">Category</h3>
+					{% get_categories as category_list %}
 					<ul>
+						{% for category in category_list %}
 						<li>
-							<a href="#">UCLA <span class="post-count">(13)</span></a>
+							<a href="#">{{ category.name }} <span class="post-count">(13)</span></a>
 						</li>
-						<li>
-							<a href="#">UCB <span class="post-count">(11)</span></a>
-						</li>
+						{% empty %}
+						No categories currently!
+						{% endfor %}
 					</ul>
 				</div>
 

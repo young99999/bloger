@@ -30,7 +30,7 @@
 		<div class="row">
 			<div class="col-md-4 col-sm-5 col-xs-8">
 				<div class="logo">
-					<h1><a href="index.html"><b>YG</b> &amp; YZ</a></h1>
+					<h1><a href="{% url 'blog:index' %}"><b>YG</b> &amp; YZ</a></h1>
 				</div>
 			</div><!-- col-md-4 -->
 			<div class="col-md-8 col-sm-7 col-xs-4">
@@ -77,14 +77,14 @@
 				<article class="post post-{{ post.pk }}">				
 					<header class="entry-header">
 						<h1 class="entry-title">
-							<a href="single.html">{{ post.title }}</a>
+							<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
 						</h1>
 						<div class="entry-meta">
 							<span class="post-category"><a href="#">{{ post.category.name }}</a></span>
 							<span class="post-date"><a href="#"><time class="entry-date"
 																	  datetime="{{ post.created_time }}"</time></a></span>
 							<span class="post-author"><a href="#">{{ post.author }}</a></span>
-							<span class="comments-link"><a href="#">4 Comments</a></span>
+							<span class="comments-link"><a href="#">{{ post.comment_set.count }} Comments</a></span>
 							<span class="views-count"><a href="#">588 Read</a></span>
 						</div>
 					</header>
@@ -95,34 +95,10 @@
 						</div>
 					</div>
 				</article>
-			{% empty %}
-				<div class="no-post">There is no content currently! </div>
-			{% endfor %}
-				
+			
+			
+			
 
-            {% block main %}
-            {% for post in post_list %}
-				<article class="post post-1">
-					<header class="entry-header">
-						<h1 class="entry-title">
-							<a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
-						</h1>
-						<div class="entry-meta">
-							<span class="post-category"><a href="#">UCB</a></span>
-							<span class="post-date"><a href="#"><time class="entry-date"
-																	  datetime="2016-12-11T23:15:57+00:00">May 11 2017</time></a></span>
-							<span class="post-author"><a href="#">Yaqi Zhang</a></span>
-							<span class="comments-link"><a href="#">5 Comments</a></span>
-							<span class="views-count"><a href="#">588 Read</a></span>
-						</div>
-					</header>
-					<div class="entry-content clearfix">
-						<p>The University of California, Berkeley, (also referred to as UC Berkeley, Berkeley, Cal, Cal Berkeley, and California) is a public research university located in Berkeley, California. Founded in 1868, Berkeley is the oldest of the ten research universities in the University of California system, and is often cited as the top public university in the United States and around the world.</p>
-						<div class="read-more cl-effect-14">
-							<a href="{{ post.get_absolute_url }}" class="more-link">Read More <span class="meta-nav">→</span></a>
-						</div>
-					</div>
-				</article>
             {% empty %}
                 <div class="no-post">There is no content currently! </div>
             {% endfor %}
@@ -137,15 +113,13 @@
 				-->
 				<div class="pagination">
 					<ul>
-						<li><a href="">1</a></li>
-						<li><a href="">...</a></li>
+						<li class="current"><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li><a href="">3</a></li>
 						<li><a href="">4</a></li>
 						<li><a href="">5</a></li>
-						<li class="current"><a href="">6</a></li>
-						<li><a href="">7</a></li>
-						<li><a href="">8</a></li>
 						<li><a href="">...</a></li>
-						<li><a href="">11</a></li>
+						<li><a href="">10</a></li>
 					</ul>
 				</div>
             {% endblock main %}
@@ -198,30 +172,6 @@
 						<li>
 							<a href="#">Python</a>
 						</li>
-						<li>
-							<a href="#">Java</a>
-						</li>
-						<li>
-							<a href="#">Note</a>
-						</li>
-						<li>
-							<a href="#">Document</a>
-						</li>
-						<li>
-							<a href="#">AngularJS</a>
-						</li>
-						<li>
-							<a href="#">CSS</a>
-						</li>
-						<li>
-							<a href="#">JavaScript</a>
-						</li>
-						<li>
-							<a href="#">Snippet</a>
-						</li>
-						<li>
-							<a href="#">jQuery</a>
-						</li>
 					</ul>
 				</div>
 				<div class="rss">
@@ -236,7 +186,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<p class="copyright">&copy 2017 - Collect from Internet
+				<p class="copyright">&copy 2017 
 					- Editored by Yang and Yaqi
 				</p>
 			</div>

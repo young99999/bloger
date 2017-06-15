@@ -31,7 +31,7 @@
 		<div class="row">
 			<div class="col-md-4 col-sm-5 col-xs-8">
 				<div class="logo">
-					<h1><a href="index.html"><b>YG</b> &amp; YZ</a></h1>
+					<h1><a href="{% url 'blog:index' %}"><b>YG</b> &amp; YZ</a></h1>
 				</div>
 			</div><!-- col-md-4 -->
 			<div class="col-md-8 col-sm-7 col-xs-4">
@@ -44,7 +44,7 @@
 
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
-							<li class="cl-effect-11"><a href="index.html" data-hover="Home">Home</a></li>
+							<li class="cl-effect-11"><a href="{% url 'blog:index' %}" data-hover="Home">Home</a></li>
 							<li class="cl-effect-11"><a href="full-width.html" data-hover="Blog">Blog</a></li>
 							<li class="cl-effect-11"><a href="about.html" data-hover="About">About</a></li>
 							<li class="cl-effect-11"><a href="contact.html" data-hover="Contact">Contact</a></li>
@@ -111,8 +111,7 @@
 					<ul>
 						{% for category in category_list %}
 						<li>
-							<a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span
-                                        class="post-count">(13)</span></a>
+							<a href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
 						</li>
 						{% empty %}
 						No categories currently!
@@ -129,30 +128,6 @@
 						<li>
 							<a href="#">Python</a>
 						</li>
-						<li>
-							<a href="#">Java</a>
-						</li>
-						<li>
-							<a href="#">Note</a>
-						</li>
-						<li>
-							<a href="#">Document</a>
-						</li>
-						<li>
-							<a href="#">AngularJS</a>
-						</li>
-						<li>
-							<a href="#">CSS</a>
-						</li>
-						<li>
-							<a href="#">JavaScript</a>
-						</li>
-						<li>
-							<a href="#">Snippet</a>
-						</li>
-						<li>
-							<a href="#">jQuery</a>
-						</li>
 					</ul>
 				</div>
 				<div class="rss">
@@ -167,7 +142,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<p class="copyright">&copy 2017 - Collect from Internet
+				<p class="copyright">&copy 2017 
 					- Editored by Yang and Yaqi
 				</p>
 			</div>
